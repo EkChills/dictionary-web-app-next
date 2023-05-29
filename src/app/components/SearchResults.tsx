@@ -9,22 +9,26 @@ import Meanings from './Meanings'
 
 export default function SearchResults() {
   const {isLoading, wordData} = useMainContext()
-  wordData && console.log(wordData);
   
-  if(isLoading) return <div>loading...</div>
+  if(isLoading) return <><Skeleton count={20} /></>
 
   if(wordData!.length > 0) {
     const word = wordData![0].word
     const phonetic = wordData![0].phonetics.filter((phonetic) => phonetic.text !== '')[0].text
-    const audio = wordData![0].phonetics.filter((phonetic) => phonetic.audio !== '')[0].audio
-
-    console.log(phonetic);
+    const meanings = wordData![wordData![1] === undefined ? 0 : 0].meanings
+    const audio = wordData![0].phonetics.filter((phonetic) => phonetic.audio !== '')[0] === undefined ? '' : wordData![0].phonetics.filter((phonetic) => phonetic.audio!== '')[0].audio
+    console.log(wordData);
+    
+    console.log(audio);
     
     return (
       <div className='pt-6'>
-        <WordSound word={word} phonetic={phonetic} audio={audio!} />
-        <Meanings />
+        <WordSound word={word} phonetic={phonetic} audio={audio!} loading={isLoading}/>
+        <Meanings meanings={meanings} />
       </div>
     )  }
+
+    return <><h1>No results found </h1></>
+
 
 }
