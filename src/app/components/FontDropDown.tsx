@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useMainContext } from "./context/mainContext";
 import Image from "next/image";
 import useOnclickOutside from "@/hooks/useOnClickOutside";
@@ -15,12 +15,20 @@ export default function FontDropDown() {
     setShowDropdown(false);
   });
 
+
   function onFontSelect(font:string) {
     setSelectedFont!(font)
+    console.log(selectedFont);
+    
+    setShowDropdown(false)
+    console.log(showDropdown);
+  } 
+
+  useEffect(() => {
     setShowDropdown(false)
     console.log(selectedFont);
     
-  } 
+  },[selectedFont])
 
   return (
     <div
@@ -42,6 +50,7 @@ export default function FontDropDown() {
           {fonts.map((font, index) => (
             <span
               key={index}
+              className="hover:text-purple-600 transition-colors duration-300"
               onClick={() => onFontSelect(font)}
             >
               {font}

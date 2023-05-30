@@ -19,13 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>
           <ContextProvider>
+        <Providers>
 
           <Header />
           {children}
-          </ContextProvider>
           </Providers>
+          </ContextProvider>
       </body>
     </html>
   );

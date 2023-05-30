@@ -15,18 +15,21 @@ const LoadingSpinner = () => {
 }
 
 export default function SearchResults() {
-  const {isLoading, wordData} = useMainContext()
+  const {isLoading, wordData, error} = useMainContext()
   
   if(isLoading) return <LoadingSpinner />
 
+  if(error) return <div><h1>there was an error</h1></div>
+
   if(wordData!.length > 0) {
     const word = wordData![0].word
-    const phonetic = wordData![0].phonetics.filter((phonetic) => phonetic.text !== '')[0].text
+    const phonetic = wordData![0].phonetics.filter((phonetic) => phonetic.text !== '')[0] ? wordData![0].phonetics.filter((phonetic) => phonetic.text !== '')[0] ?.text : ''
     const meanings = wordData![wordData![1] === undefined ? 0 : 0].meanings
     const audio = wordData![0].phonetics.filter((phonetic) => phonetic.audio !== '')[0] === undefined ? '' : wordData![0].phonetics.filter((phonetic) => phonetic.audio!== '')[0].audio
     console.log(wordData);
     
     console.log(audio);
+
     
     return (
       <div className='pt-6'>
