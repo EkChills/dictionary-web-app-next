@@ -28,6 +28,8 @@ interface InitialState{
   isLoading:boolean; 	// set to true while word data is being loaded from server.  Used for animation.  Only set to true while word data
   error:boolean;			// set if word data load failed.  Used for animation.  Only set to true if word data load failed.
   setWordData?:Dispatch<SetStateAction<WordData>>
+  selectedFont?:string;
+  setSelectedFont?:Dispatch<SetStateAction<string>>;		// set to true if the user selects a different font.  Used for
   setIsLoading?:Dispatch<SetStateAction<boolean>>
   setError?:Dispatch<SetStateAction<boolean>>
   // modifiedData:
@@ -37,6 +39,7 @@ const initialState:InitialState = {
   fonts:["Sans Serif", "Serif", "Mono"],
   currentFont:'Sans Serif',
   isLoading:false,
+  selectedFont:'Mono',
   error:false,
   wordData:[],
 }
@@ -49,12 +52,13 @@ export function ContextProvider ({children}:{children:React.ReactNode}) {
   const [currentFont, setCurrentFont] = useState<string>('Sans Serif')
   const [error, setError] = useState<boolean >(false)
   const [wordData, setWordData] = useState<WordData>([])
+  const [selectedFont, setSelectedFont] = useState<string>(initialState.selectedFont!)
 
   const onFontChange = (font:string) => {
     setCurrentFont(font)
   }
 
-  return <MainContext.Provider value={{currentFont, fonts:fonts!, onFontChange, setWordData, isLoading, error, wordData, setIsLoading, setError}} >
+  return <MainContext.Provider value={{currentFont, fonts:fonts!, onFontChange, setWordData, isLoading, error, wordData, setIsLoading, setError,selectedFont, setSelectedFont}} >
     {children}
   </MainContext.Provider>
 }

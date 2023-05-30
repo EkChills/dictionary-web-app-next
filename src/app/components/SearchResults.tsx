@@ -4,13 +4,20 @@ import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { useMainContext } from './context/mainContext'
+import { PacmanLoader } from 'react-spinners'
 import WordSound from './WordSound'
 import Meanings from './Meanings'
+
+const LoadingSpinner = () => {
+  return <div className='flex  w-full pt-12 items-center justify-center'>
+    <PacmanLoader size={25} color='#A445ED' />
+  </div>
+}
 
 export default function SearchResults() {
   const {isLoading, wordData} = useMainContext()
   
-  if(isLoading) return <><Skeleton count={20} /></>
+  if(isLoading) return <LoadingSpinner />
 
   if(wordData!.length > 0) {
     const word = wordData![0].word
@@ -28,7 +35,7 @@ export default function SearchResults() {
       </div>
     )  }
 
-    return <><h1>No results found </h1></>
+    return <></>
 
 
 }

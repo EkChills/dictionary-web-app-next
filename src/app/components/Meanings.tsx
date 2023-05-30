@@ -1,4 +1,3 @@
-import { Divide } from 'lucide-react';
 import React from 'react'
 
 
@@ -22,7 +21,7 @@ export default function Meanings({meanings}:{meanings:Meanings}) {
               <h3 className='font-bold text-[1.125rem] sm:text-[1.5rem]'>{meaning.partOfSpeech || ''}</h3>
               <div className='h-[1px] w-full bg-[#E9E9E9] dark:bg-[#3A3A3A] ' />
             </div>
-            <h4 className='font-[400] text-[1.125rem] sm:text-[1.25rem] text-[#757575]'>Meaning</h4>
+            <h4 className='font-[400] text-[1.125rem] sm:text-[1.25rem] text-[#757575] mb-4'>Meaning</h4>
             <div className='sm:pl-[1.38rem] flex flex-col space-y-[13px]'>
               {meaning.definitions.map((definition) => (
                 <div key={definition.definition} >
@@ -34,7 +33,7 @@ export default function Meanings({meanings}:{meanings:Meanings}) {
                 
               ))}
             </div>
-            {meaning.synonyms?.length! > 0 && <div className='flex items-center space-x-10 mt-6' >
+            {meaning.synonyms?.length! > 0 && <div className='flex items-center space-x-10 mt-6 truncate' >
               <h4 className='font-[400] text-[1.125rem] sm:text-[1.25rem] text-[#757575]'>Synonyms</h4>
               <div className='flex items-center space-x-4'>
                 {meaning.synonyms!.map((synonym, index) => (
