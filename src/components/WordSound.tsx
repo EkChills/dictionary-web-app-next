@@ -3,6 +3,7 @@ import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 
 export default function WordSound({word, phonetic, audio}:{word:string, phonetic:string, audio:string}) {
+
   return (
     <div className='flex justify-between '>
       <div className='flex flex-col space-y-[.5rem]'>
