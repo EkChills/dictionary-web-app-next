@@ -18,8 +18,10 @@ export default function SearchInput() {
   const fetchSearch = async(e:FormEvent) => {
       e.preventDefault()
       if(!searchText) return
-      setSearchText('')
       router.push(`/${searchText}`)
+      setTimeout(() => {
+        setSearchText('')
+      }, 1000)
   }
   return (
     <form className='relative sm:max-w-[46.1rem] sm:mx-auto ' onSubmit={fetchSearch}>
