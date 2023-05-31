@@ -1,6 +1,4 @@
 import React from 'react'
-import SearchInput from '../components/SearchInput'
-import SearchResults from '../components/SearchResults'
 
 export default function page() {
 
