@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import FontDropDown from './FontDropDown'
 import DarkModeSwitch from './DarkModeSwitch'
+import SearchInput from './SearchInput'
 
 export default function Header() {
   return (

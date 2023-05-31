@@ -1,6 +1,7 @@
-import Header from "./components/Header";
-import Providers from "./components/Providers";
-import { ContextProvider } from "./components/context/mainContext";
+import SearchInput from "@/components/SearchInput";
+import Header from "../components/Header";
+import Providers from "../components/Providers";
+import { ContextProvider } from "../components/context/mainContext";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Providers>
 
           <Header />
+          <SearchInput />
           {children}
           </Providers>
           </ContextProvider>

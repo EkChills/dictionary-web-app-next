@@ -1,5 +1,3 @@
-"use client"
-
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -14,12 +12,9 @@ const LoadingSpinner = () => {
   </div>
 }
 
-export default function SearchResults() {
-  const {isLoading, wordData, error} = useMainContext()
-  
-  if(isLoading) return <LoadingSpinner />
+export default async function SearchRes({promise}:{promise:Promise<WordData | undefined>}) {
+  const wordData:WordData | undefined = await promise
 
-  if(error) return <div><h1>there was an error</h1></div>
 
   if(wordData!.length > 0) {
     const word = wordData![0].word
@@ -30,15 +25,15 @@ export default function SearchResults() {
     
     console.log(audio);
 
+    const displayedResult = (
+      wordData ? <div className='pt-6 sm:max-w-[46.1rem] sm:mx-auto '>
+      <WordSound word={word} phonetic={phonetic} audio={audio!}/>
+      <Meanings meanings={meanings} />
+    </div> : <div>word not found</div>
+    )
+
     
-    return (
-      <div className='pt-6'>
-        <WordSound word={word} phonetic={phonetic} audio={audio!} loading={isLoading}/>
-        <Meanings meanings={meanings} />
-      </div>
-    )  }
+    return displayedResult
 
-    return <></>
-
-
+    }
 }
